@@ -149,24 +149,6 @@ Associated metadata JSONL includes:
 }
 ```
 
-## Performance Tips
-
-1. **Batch Size**: Increase `BATCH_SIZE` for better GPU utilization (watch VRAM)
-2. **SLURM Distribution**: Use `world_size` matching GPU count for efficiency
-3. **Memory Management**: Script automatically cleans GPU cache every N batches
-4. **Resume**: Safely stop and resume jobs—completed samples are automatically skipped
-
-## Error Handling
-
-The script includes robust error handling for:
-- Missing audio files
-- Invalid audio formats
-- GPU OOM (tracking and cleanup)
-- NaN/Inf values in inference
-- Model loading failures
-
-Check rank-specific logs in `{LOCAL_JSONL_BASE}/log/rank{N}.log` for detailed debugging.
-
 ## Troubleshooting
 
 ### CUDA Device Issues
@@ -183,37 +165,6 @@ Ensure `ASSETS_TS_FOLDER` points to valid TorchScript and ONNX assets:
 ### Out of Memory
 Reduce `BATCH_SIZE` or increase `CLEANUP_EVERY_N_BATCHES` for more frequent GPU cleanup.
 
-## Citation
-
-If you use this work, please cite:
-
-```bibtex
-@software{slurm_repr_extractor,
-  title={SLURM-Based Representation Extractor for Indic ASR},
-  author={BharatGen},
-  year={2024},
-  url={https://github.com/BharatGen-Tech/slurm-repr-extractor}
-}
-```
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contributing
-
-Contributions are welcome! Please:
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## Support
-
-For issues, questions, or suggestions, please open an issue on GitHub.
-
-## Acknowledgments
-
-- Built on transformers, PyTorch, and ONNX Runtime
-- Tested on AWS FSx for Lustre and NVIDIA A100 clusters
+MIT License - see [LICENSE](LICENSE) file for details.
